@@ -5,7 +5,7 @@
 * Simple console-based Connect 4 game
 * Play against the computer, play 2 computers, or have a computer decide at each step
 
-## Run
+## Usage
 1. Clone repository
-2. Go into the bin directory
-3. Run `java mcts.Main`
+2. Import the project into the IDE of your choice (I used Eclipse)
+3. Run the program (there should be no external dependencies)
