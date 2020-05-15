@@ -20,5 +20,4 @@ public class Node {
         this.wins = 0;
         this.plays = 0;
     }
-
 }

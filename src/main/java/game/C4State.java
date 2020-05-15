@@ -18,6 +18,7 @@ public class C4State extends State <C4Move> {
         this.grid = grid;
     }
 
+    @Override
     public int applyMove(C4Move move) {
         if (!isLegal(move))
             return -1;

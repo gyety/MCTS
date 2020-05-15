@@ -61,7 +61,7 @@ public class Main {
             MCTS.search(root, timeGiven, false);
             Node bestNode = MCTS.getBestNode(root);
             System.out.println(String.format("Conf:%.2f, Pred:%dk", (double)bestNode.wins/bestNode.plays, root.plays/1000));
-            s.applyMove(bestNode.move);
+            s.applyMove((C4Move) bestNode.move);
             s.printState();
             System.out.println();
         }

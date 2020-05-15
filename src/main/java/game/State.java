@@ -11,8 +11,8 @@ public abstract class State <T extends Move> {
         this.pWon = 0;
     }
 
-    public int applyMove(Move move) {
-        if (!isLegal((T) move))
+    public int applyMove(T move) {
+        if (!isLegal(move))
             return -1;
         // Apply move
         return checkWon();
@@ -29,7 +29,7 @@ public abstract class State <T extends Move> {
         return pWon;
     }
 
-    public ArrayList<? extends Move> getLegalMoves() {
+    public ArrayList<T> getLegalMoves() {
         return null;
     }
 

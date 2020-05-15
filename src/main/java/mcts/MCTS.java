@@ -5,7 +5,7 @@ import java.util.Random;
 
 import game.*;
 
-public class MCTS {
+public class MCTS{
     private static Random random = new Random();
 
     public static void search(Node root, double timeGiven) {
@@ -66,7 +66,7 @@ public class MCTS {
 
         // TODO: Check WTF Python code here does
 
-        ArrayList<? extends Move> legalMoves = leaf.state.getLegalMoves();
+        ArrayList<Move> legalMoves = leaf.state.getLegalMoves();
 
         for (int moveNum = 0; moveNum < legalMoves.size(); moveNum++) {
             Move move = legalMoves.get(moveNum);
@@ -78,6 +78,7 @@ public class MCTS {
                 }
             }
         }
+
         if (legalMoves.size() == 0)
             return -1;
         Node newLeaf = genNode(leaf, legalMoves.get(random.nextInt(legalMoves.size())));
@@ -138,7 +139,7 @@ public class MCTS {
         int startPlayer = s.getCurPlayer();
         int pWon = s.checkWon();
         while (pWon == 0) {
-            ArrayList<? extends Move> legalMoves = s.getLegalMoves();
+            ArrayList<Move> legalMoves = s.getLegalMoves();
             if (legalMoves.size() == 0) {
                 pWon = s.checkWon();
                 break;
