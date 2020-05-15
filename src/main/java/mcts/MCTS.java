@@ -66,7 +66,7 @@ public class MCTS {
 
         // TODO: Check WTF Python code here does
 
-        ArrayList<Move> legalMoves = leaf.state.getLegalMoves();
+        ArrayList<? extends Move> legalMoves = leaf.state.getLegalMoves();
 
         for (int moveNum = 0; moveNum < legalMoves.size(); moveNum++) {
             Move move = legalMoves.get(moveNum);
@@ -83,7 +83,7 @@ public class MCTS {
         Node newLeaf = genNode(leaf, legalMoves.get(random.nextInt(legalMoves.size())));
         leaf.children.add(newLeaf);
         boolean res = playout(newLeaf);
-        backprop(newLeaf, root, res);
+        backTrace(newLeaf, root, res);
         return 0;
     }
 
@@ -97,7 +97,7 @@ public class MCTS {
     }
 
     private static boolean fullyExpanded(Node node) {
-        ArrayList<Move> legalMoves = node.state.getLegalMoves();
+        ArrayList<? extends Move> legalMoves = node.state.getLegalMoves();
         if (legalMoves.size() == 0) // Make sure this is OK
             return false;
         for (Move m : legalMoves) {
@@ -138,7 +138,7 @@ public class MCTS {
         int startPlayer = s.getCurPlayer();
         int pWon = s.checkWon();
         while (pWon == 0) {
-            ArrayList<Move> legalMoves = s.getLegalMoves();
+            ArrayList<? extends Move> legalMoves = s.getLegalMoves();
             if (legalMoves.size() == 0) {
                 pWon = s.checkWon();
                 break;
@@ -149,13 +149,13 @@ public class MCTS {
         return pWon != startPlayer;
     }
 
-    private static void backprop(Node node, Node root, boolean res) {
+    private static void backTrace(Node node, Node root, boolean res) {
         node.plays++;
         if (res)
             node.wins++;
         if (node == root)
             return;
-        backprop(node.parent, root, !res);
+        backTrace(node.parent, root, !res);
     }
 
     public static void printTree(Node node, int depth) {
@@ -165,7 +165,7 @@ public class MCTS {
             System.out.print("   ");
         }
         if (node.move != null) {
-            System.out.print(node.move.loc + ": ");
+            System.out.print(node.move + ": ");
         } else {
             System.out.print("R: ");
         }

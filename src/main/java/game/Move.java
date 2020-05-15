@@ -1,19 +1,10 @@
 package game;
 
-public class Move {
-    public int loc;
+public abstract class Move {
     public int player;
 
-    public Move(int loc) {
-        this.loc = loc;
-    }
+    public abstract boolean equals(C4Move m2);
 
-    public Move(int loc, int player) {
-        this.loc = loc;
-        this.player = player;
-    }
+    public abstract String getString();
 
-    public boolean equals(Move m2) {
-        return this.loc == m2.loc;
-    }
 }
