@@ -10,6 +10,10 @@ application {
     mainClassName = "mcts.Main"
 }
 
+run{
+    standardInput = System.in
+}
+
 repositories {
     mavenCentral()
 }

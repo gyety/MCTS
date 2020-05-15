@@ -2,7 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
-public class C4State extends State {
+public class C4State extends State <C4Move> {
     private int curPlayer;
     private int pWon;
     private int grid[][] = new int[6][7]; // x is left to right, y is down to up
@@ -93,6 +93,7 @@ public class C4State extends State {
     }
 
 
+    @Override
     protected boolean isLegal(C4Move move) {
         int l = move.loc;
         if(l<0 || l>=7)

@@ -2,7 +2,7 @@ package game;
 
 import java.util.ArrayList;
 
-public abstract class State {
+public abstract class State <T extends Move> {
     protected int curPlayer;
     protected int pWon;
 
@@ -12,7 +12,7 @@ public abstract class State {
     }
 
     public int applyMove(Move move) {
-        if (!isLegal(move))
+        if (!isLegal((T) move))
             return -1;
         // Apply move
         return checkWon();
@@ -33,9 +33,7 @@ public abstract class State {
         return null;
     }
 
-    protected boolean isLegal(Move move){
-        return false;
-    };
+    protected abstract boolean isLegal(T move);
 
     private void flipPlayer() {
         if (curPlayer == 1)
